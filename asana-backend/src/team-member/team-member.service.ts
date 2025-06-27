@@ -17,14 +17,23 @@ export class TeamMemberService {
     if(users.length!==userId.length){
       throw new NotFoundException("one or more user is not found ")
     }
-    const teamMember=new TeamMember()
-    teamMember.team={id:createTeamMemberDto.teamID}as any
-    // teamMember.user=users
-    // const members=this.teamMemberRepository.create({team:teamID,user:users})
+    // const teamMember=new TeamMember()
+    // teamMember.team={id:createTeamMemberDto.teamID}as any
+    // // teamMember.user=users
+    // // const members=this.teamMemberRepository.create({team:teamID,user:users})
+      const teamMembers = users.map(user => {
+    const member = new TeamMember();
+    member.team = { id: teamID } as Team;
+    member.user = user;
+    return member;
+  });
+  //  Bulk insert using save()
+  const savedMembers = await this.teamMemberRepository.save(teamMembers);
+  return savedMembers;
 
 
 
-    return 'This action adds a new teamMember';
+    // return 'This action adds a new teamMember';
   }
 
   findAll() {

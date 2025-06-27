@@ -4,6 +4,7 @@ import { Organization } from 'src/organization/entities/organization.entity';
 import { User } from 'src/user/entities/user.entity';
 import { Team } from 'src/team/entities/team.entity';
 import { Project } from 'src/project/entities/project.entity';
+import { TeamMember } from 'src/team-member/entities/team-member.entity';
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME || 'team-managment',
   synchronize: true,
   logging:true,
-  entities: [Organization,User,Team,Project],
+  entities: [Organization,User,Team,Project,TeamMember],
   // migrations: [isCompiled ? 'dist/database/migrations/*.js' : 'src/database/migrations/*.ts'],
 
 });

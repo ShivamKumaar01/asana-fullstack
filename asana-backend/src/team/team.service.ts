@@ -32,7 +32,7 @@ export class TeamService {
     const value=await this.userService.update(user.id,{role:"team-lead"})
     console.log(value,"hellow");
  
-    // await this.teamRepository.save(team)
+    await this.teamRepository.save(team)
     return {message:"team created successfully"};
    
   }
